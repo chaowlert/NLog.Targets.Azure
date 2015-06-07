@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NLog.Targets.Azure</id>
+    <version>1.0.0</version>
+    <title>NLog.Targets.Azure</title>
+    <authors>Chaowlert</authors>
+    <owners>Chaowlert</owners>
+    <projectUrl>https://github.com/chaowlert/NLog.Targets.Azure</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NLog targets to Azure Table Storage</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>nlog targets azure</tags>
+  </metadata>
+</package>

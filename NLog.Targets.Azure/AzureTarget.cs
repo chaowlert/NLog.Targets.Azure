@@ -28,7 +28,6 @@ namespace NLog.Targets
         
         SettingAttribute _setting;
         CloudClient _client;
-        string _key;
         protected override void InitializeTarget()
         {
             _setting = new SettingAttribute
@@ -38,7 +37,6 @@ namespace NLog.Targets
                 RemoveAfter = this.RemoveAfter,
             };
             _client = CloudClient.Get(this.ConnectionName);
-            _key = this.GetType().FullName + "." + this.Name;
             base.InitializeTarget();
         }
 
@@ -46,7 +44,7 @@ namespace NLog.Targets
         {
             try
             {
-                var table = _client.GetGenericCloudTable<LogItem>(_key, _setting);
+                var table = _client.GetGenericCloudTable<LogItem>(_setting.Name, _setting);
                 var key = TimeId.GetTimeId(DateTime.UtcNow, this.SortAscending);
                 var items = logEvents.Select(log => CreateLogItem(key, log.LogEvent));
                 table.BulkInsert(items, true);
@@ -61,7 +59,7 @@ namespace NLog.Targets
         }
         protected override void Write(LogEventInfo logEvent)
         {
-            var table = _client.GetGenericCloudTable<LogItem>(_key, _setting);
+            var table = _client.GetGenericCloudTable<LogItem>(_setting.Name, _setting);
             var key = TimeId.GetTimeId(DateTime.UtcNow, this.SortAscending);
             var logItem = CreateLogItem(key, logEvent);
             table.Insert(logItem, true);
