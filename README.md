@@ -3,7 +3,7 @@ NLog.Targets.Azure
 
 NLog targets to Azure Table Storage
 
-####Example config
+#### Example config
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
